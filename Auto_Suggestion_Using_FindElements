@@ -1,0 +1,37 @@
+package demo1;
+
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+public class BingDelete {
+
+	public static void main(String[] args) {
+		
+		//Creating firefox driver object
+		WebDriver driver = new FirefoxDriver();
+		driver.get("http://bing.com");
+		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+		
+		//Entering some text in the text box to pop-up auto suggestion list.
+		driver.findElement(By.id("sb_form_q")).sendKeys("selenium");
+		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+
+		//Finding the list of autosuggestion list.
+		List<WebElement> ListEle = driver.findElements(By.xpath("//div[@class='sa_tm']"));
+		System.out.println("Size of the List is :");
+		System.out.println(ListEle.size());
+		
+		//Printing list of auto suggested list
+		for(WebElement i:ListEle){  
+		   System.out.println(i.getText());  
+
+		   }  
+		
+	}
+
+}
