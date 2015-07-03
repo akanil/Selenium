@@ -1,0 +1,54 @@
+package locators;
+
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+public class YatraPageAutofilling {
+
+	public static void main(String[] args) 
+	{
+		// TODO Auto-generated method stub
+		WebDriver driver = new FirefoxDriver();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		
+		driver.get( "http://www.yatra.com/");
+		driver.findElement(By.id("BE_flight_origin_city")).sendKeys("ban");
+		
+		String xp ="//div[@class='ac_results']//li";
+		String axp = "//div[@class='ac_results']";  // Was not able to select properly 
+		List<WebElement> listofWebElements = driver.findElements(By.xpath(xp));
+		System.out.println(listofWebElements.size());
+//		for (WebElement v : listofWebElements )
+//		{
+//			System.out.println(v.getText());
+//			String str = v.getText();
+//			if (str.contains("Bangalore"))
+//			{
+//				v.click();
+//				System.out.println("Bangalore selected");
+//				break;
+//				
+//			}
+		
+		for(WebElement i: listofWebElements)
+		{
+			System.out.println((i.getText()));
+
+			if(i.getText().contains("Bangalore"))
+			{
+				i.click();
+				System.out.println("selected bangalore as Destinaton");
+				break;
+
+			}
+			
+		
+		}
+	}
+
+}
