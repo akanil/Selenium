@@ -1,0 +1,42 @@
+package demo1;
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.Select;
+//import org.openqa.selenium.support.ui.Select;
+
+public class Single_Multi_Select_ListBox {
+
+	public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+		
+		WebDriver driver = new FirefoxDriver();
+
+// Selecting Bangalore in any travel portal
+		driver.get("http://yatra.com");
+		//class = ac_results, to findout the list elements.
+		driver.findElement(By.id("BE_flight_origin_city")).sendKeys("Ban");
+		List<WebElement> allEle_start_Ban = driver.findElements(By.xpath("//div[@class='ac_results']")); 
+		
+		for(WebElement i: allEle_start_Ban)
+		{
+			System.out.println((i.getText()));
+
+			if(i.getText().contains("Bangalore"))
+			{
+				i.click();
+				System.out.println("selected bangalore as Destinaton");
+				break;
+
+			}
+			
+				
+		}
+		
+	}
+
+}
