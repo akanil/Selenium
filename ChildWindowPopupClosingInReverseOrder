@@ -1,0 +1,36 @@
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+
+public class ContextSwitchEx1 {
+
+	public static void main(String[] args) 
+	{
+		// TODO Auto-generated method stub
+		WebDriver driver = new FirefoxDriver();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.get("http://www.naukri.com");
+		
+		// check for no of windows opened
+		Iterator<String> allWHi = driver.getWindowHandles().iterator();
+		ArrayList<String> aList= new ArrayList<String>(); 
+		
+		while ( allWHi.hasNext() )
+		{
+			
+			aList.add(allWHi.next()); 
+				
+		}
+		System.out.println(aList.size());
+		for(int i=aList.size()-1;i>=0;i--)
+		{
+			
+			driver.switchTo().window(aList.get(i)).close();
+		}
+	}
