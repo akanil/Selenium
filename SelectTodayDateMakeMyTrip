@@ -1,0 +1,16 @@
+import java.util.concurrent.TimeUnit;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+public class Demo 
+{
+public static void main(String[] args)
+{
+WebDriver driver = new FirefoxDriver();
+driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+driver.get("http://www.makemytrip.com/");
+driver.findElement(By.xpath("//span[text()='DEPARTURE']")).click();
+String xp="//td[contains(@class,'ui-datepicker-today')]/a";
+driver.findElement(By.xpath(xp)).click();
+}
+}
